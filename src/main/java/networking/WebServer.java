@@ -7,13 +7,11 @@ import com.sun.net.httpserver.HttpServer;
 
 import java.io.IOException;
 import java.io.OutputStream;
-import java.math.BigInteger;
 import java.net.InetSocketAddress;
-import java.util.Arrays;
 import java.util.concurrent.Executors;
 
 public class WebServer {
-    private static final String TASK_ENDPOINT="/task";
+
     private static final String STATUS_ENDPOINT="/status";
     private final int port;
     private HttpServer server;
