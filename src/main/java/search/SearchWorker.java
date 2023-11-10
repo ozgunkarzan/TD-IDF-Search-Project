@@ -17,7 +17,10 @@ public class SearchWorker implements OnRequestCallback {
     @Override
     public byte[] handleRequest(byte[] requestPayload) {
         Task task = (Task) SerializationUtils.deserialize(requestPayload);
-        Result result= createResult(task);
+        Result result= null;
+        if (task != null) {
+            result = createResult(task);
+        }
         return SerializationUtils.serialize(result);
     }
     public  Result createResult(Task task){
@@ -26,7 +29,7 @@ public class SearchWorker implements OnRequestCallback {
         Result result= new Result();
         for(String document: documents){
             List<String> words=parseWordsFromDocument(document);
-            DocumentData documentData=TFIDF.createDocumentData(words, task.getSearchTerms())
+            DocumentData documentData=TFIDF.createDocumentData(words, task.getSearchTerms());
             result.addDocumentData(document,documentData);
         }
         return result;
